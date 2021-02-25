@@ -10,7 +10,6 @@ import Pdf from "react-to-pdf";
 
 
 function Canvas({fetchElements, element}) {
-    console.log("EEEE", element)
     // useEffect(()=>{
     //     fetchElements("TEst")
     // },[])
@@ -18,7 +17,7 @@ function Canvas({fetchElements, element}) {
 
     useEffect(() => {
         if (element && element.element && element.element === "null") {
-            alert("element.error")
+              alert(element.error);
         }
     }, [element]);
 
