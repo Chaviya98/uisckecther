@@ -1,0 +1,12 @@
+[
+  {
+    "component": "button",
+    "width": 140,
+    "height": 40
+  },
+  {
+    "component": "card",
+    "width": 140,
+    "height": 160
+  }
+]
