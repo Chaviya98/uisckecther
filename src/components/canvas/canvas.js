@@ -38,10 +38,10 @@ function Canvas({fetchElements, element}) {
             <br/>
             <Row className={"text-center"}>
                 <Col>
-                    <Pdf targetRef={ref} filename="div-blue.pdf" scale={2} x={50} y={20}>
+                    <Pdf targetRef={ref} filename="div-blue.pdf" scale={2} x={50} y={15}>
                         {({toPdf}) => (
                             <Button variant="outline-light" style={{borderColor: "#34495e"}}>
-                                <FaFileDownload size={30} color={"#34495e"}/>
+                                <FaFileDownload size={20} color={"#34495e"}/>
                                 <span style={{color: '#34495e', margin: 8}} onClick={toPdf}>Download Design</span>
                             </Button>
                         )}
@@ -49,10 +49,10 @@ function Canvas({fetchElements, element}) {
 
                 </Col>
                 <Col>
-                    <Pdf targetRef={ref} filename="div-blue.pdf" scale={2} x={50} y={20}>
+                    <Pdf targetRef={ref} filename="div-blue.pdf" scale={2} x={50} y={15}>
                         {({toPdf}) => (
                             <Button variant="outline-light" style={{borderColor: "#34495e"}}>
-                                <FaTrash size={30} color={"#34495e"}/>
+                                <FaTrash size={20} color={"#34495e"}/>
                                 <span style={{color: '#34495e', margin: 8}} onClick={toPdf}>Reset Design</span>
                             </Button>
                         )}

@@ -25,6 +25,8 @@ code {
   -webkit-box-shadow: 3px 4px 13px 4px rgba(0,0,0,0.5);
   box-shadow: 3px 4px 13px 4px rgba(0,0,0,0.3);
   margin: 20px;
+  margin-top: 60px !important;
+  padding-bottom: 50px !important;
   padding:10px;
   align-items: center;
   justify-content: center;
