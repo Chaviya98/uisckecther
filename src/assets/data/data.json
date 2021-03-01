@@ -33,5 +33,10 @@
     "component": "label",
     "width": 140,
     "height": 30
+  },
+  {
+    "component": "navbar",
+    "width": 140,
+    "height": 40
   }
 ]

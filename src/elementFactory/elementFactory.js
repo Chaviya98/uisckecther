@@ -10,6 +10,7 @@ import {UITextView} from "./UITextView";
 import {UIHeader} from "./UIHeader";
 import elementPositionMap from "../assets/data/data.json";
 import {UILabel} from "./UILabel";
+import {BottomNavBar} from "./BottomNavBar";
 export function ElementFactory({element}) {
 
     const [position,setPosition] = useState({ x: 10,y:5});
@@ -55,8 +56,8 @@ export function ElementFactory({element}) {
 
 export function ElementGenerator({element,position,elementCount}){
     switch(element.element) {
-        case "circle":
-            return    <Circle x={100} y={100} radius={50} fill={element.color} draggable={true} />;
+        case "navbar":
+            return    <BottomNavBar element={element} position={position} count={elementCount}/>;
         case "button":
             return  <UIButton position={position} radius={50} fill={element.color} draggable={true} title={element.attribute} />;
             // code block
