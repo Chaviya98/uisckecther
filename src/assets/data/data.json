@@ -1,5 +1,10 @@
 [
   {
+    "component": "header",
+    "width": 140,
+    "height": 40
+  },
+  {
     "component": "button",
     "width": 140,
     "height": 40
@@ -8,5 +13,25 @@
     "component": "card",
     "width": 140,
     "height": 160
+  },
+  {
+    "component": "image",
+    "width": 140,
+    "height": 100
+  },
+  {
+    "component": "input",
+    "width": 140,
+    "height": 70
+  },
+  {
+    "component": "text",
+    "width": 140,
+    "height": 60
+  },
+  {
+    "component": "label",
+    "width": 140,
+    "height": 30
   }
 ]

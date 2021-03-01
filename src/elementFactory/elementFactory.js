@@ -9,6 +9,7 @@ import {UIImageView} from "./UIImageView";
 import {UITextView} from "./UITextView";
 import {UIHeader} from "./UIHeader";
 import elementPositionMap from "../assets/data/data.json";
+import {UILabel} from "./UILabel";
 export function ElementFactory({element}) {
 
     const [position,setPosition] = useState({ x: 10,y:5});
@@ -63,14 +64,17 @@ export function ElementGenerator({element,position,elementCount}){
         case "card":
             return  <UICard element={element} position={position} count={elementCount} title={element.attribute}/>;
             break;
-        case "imageview":
+        case "image":
             return  <UIImageView element={element} position={position} count={elementCount}/>;
             break;
-        case "textinput":
+        case "input":
             return  <UITextInput element={element} position={position} count={elementCount} placeholder={element.attribute}/>;
             break;
-        case "textview":
+        case "text":
             return  <UITextView element={element} position={position} count={elementCount}/>;
+            break;
+        case "label":
+            return  <UILabel element={element} position={position} count={elementCount} value={element.attribute}/>;
             break;
         case "header":
             return  <UIHeader element={element} position={position} count={elementCount}/>;

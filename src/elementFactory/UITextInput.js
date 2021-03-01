@@ -9,7 +9,7 @@ export function UITextInput({element,position,count, placeholder}) {
         placeholder = "Placeholder"
     }
     return   <Layer>
-        <Text text={`Label Name`} fontSize={14}  x={position.x} y={position.y+10} />
+        <Text text={`Label Name`} fontSize={12}  x={position.x} y={position.y+10} />
         <Rect
             x={position.x}
             y={position.y+30}
@@ -18,6 +18,6 @@ export function UITextInput({element,position,count, placeholder}) {
             fill="white"
             shadowBlur={2}
         />
-        <Text text={placeholder} fontSize={12}  x={position.x+15} y={position.y+40} />
+        <Text text={placeholder} fontSize={10}  x={position.x+15} y={position.y+40} />
     </Layer>
 }

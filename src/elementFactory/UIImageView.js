@@ -10,7 +10,7 @@ export function UIImageView({element,position,count}) {
             x={position.x}
             y={position.y+10}
             width={140}
-            height={120}
+            height={100}
             fill="white"
             shadowBlur={2}
         />
