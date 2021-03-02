@@ -7,7 +7,8 @@ import {ElementFactory} from "../../elementFactory/elementFactory";
 import {connect} from "react-redux";
 import {fetchElements} from "../../actions";
 import Pdf from "react-to-pdf";
-
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 function Canvas({fetchElements, element}) {
     // useEffect(()=>{
@@ -17,7 +18,15 @@ function Canvas({fetchElements, element}) {
 
     useEffect(() => {
         if (element && element.element && element.element === "null") {
-              alert(element.error);
+            confirmAlert({
+                title: 'Failed !',
+                message: element.error,
+                buttons: [
+                    {
+                        label: 'Ok',
+                    }
+                ]
+            });
         }
     }, [element]);
 

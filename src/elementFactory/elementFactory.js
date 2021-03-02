@@ -11,6 +11,9 @@ import {UIHeader} from "./UIHeader";
 import elementPositionMap from "../assets/data/data.json";
 import {UILabel} from "./UILabel";
 import {BottomNavBar} from "./BottomNavBar";
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
+
 export function ElementFactory({element}) {
 
     const [position,setPosition] = useState({ x: 10,y:5});
@@ -21,7 +24,7 @@ export function ElementFactory({element}) {
 
 
     function positionCalculator(elementName){
-        console.log("elementName",elementName)
+
         if(!elementName){
             return 35
         }
@@ -32,7 +35,7 @@ export function ElementFactory({element}) {
 
 
     useEffect(()=>{
-        console.log("maxLimit",maxLimit)
+
         setElementCount( prevState => prevState +1);
         setPosition(preState => ({
             ...preState,
@@ -42,7 +45,15 @@ export function ElementFactory({element}) {
             elementArray.push(<ElementGenerator element={element} position={position} elementCount={elementCount}/>)
         }
         else {
-            alert("Max Canvas height")
+            confirmAlert({
+                title: 'Failed !',
+                message: 'Max Canvas height reached.',
+                buttons: [
+                    {
+                        label: 'Ok',
+                    }
+                ]
+            });
         }
     },[element])
 
