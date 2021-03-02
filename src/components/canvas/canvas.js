@@ -1,20 +1,28 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState, Tex} from 'react';
 import {Circle, Layer, Stage, Text,} from 'react-konva';
-import {Button, Col, Image, Row} from "react-bootstrap";
+import {Button, Card, Col, Form, Image, InputGroup, Row} from "react-bootstrap";
 import {FaFileDownload, FaTrash} from 'react-icons/fa';
 import phone from "../../assets/images/hpne.png";
 import {ElementFactory} from "../../elementFactory/elementFactory";
 import {connect} from "react-redux";
 import {fetchElements} from "../../actions";
 import Pdf from "react-to-pdf";
-import { confirmAlert } from 'react-confirm-alert';
+import {confirmAlert} from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
+import ReactStars from "react-rating-stars-component";
+
 
 function Canvas({fetchElements, element}) {
     // useEffect(()=>{
     //     fetchElements("TEst")
     // },[])
     // console.log(">>>",element)
+    const [rating, setRating] = useState(2);
+    const [review, setReview] = useState();
+
+    const ratingChanged = (newRating) => {
+      setRating(newRating);
+    };
 
     useEffect(() => {
         if (element && element.element && element.element === "null") {
@@ -47,25 +55,63 @@ function Canvas({fetchElements, element}) {
             <br/>
             <Row className={"text-center"}>
                 <Col>
-                    <Pdf targetRef={ref} filename="div-blue.pdf" scale={2} x={50} y={15}>
-                        {({toPdf}) => (
-                            <Button variant="outline-light" style={{borderColor: "#34495e"}}>
-                                <FaFileDownload size={20} color={"#34495e"}/>
-                                <span style={{color: '#34495e', margin: 8}} onClick={toPdf}>Download Design</span>
-                            </Button>
-                        )}
-                    </Pdf>
+
+                    <Button variant="outline-light" style={{borderColor: "#34495e"}} onClick={() => {
+                        confirmAlert({
+                            customUI: () => {
+                                return (
+                                    <Pdf targetRef={ref} filename="div-blue.pdf" scale={2} x={50} y={15}>
+                                        {({toPdf}) => (
+                                            <div className='custom-ui'>
+                                                <h3>Please rate you sketch design.</h3>
+                                                <ReactStars
+                                                    count={5}
+                                                    onChange={ratingChanged}
+                                                    size={40}
+                                                    activeColor="#ffd700"
+                                                />
+                                                <br/>
+                                                <Form.Control as="textarea" rows={3} style={{borderRadius: 20, flex: 1}}
+                                                              placeholder={"I want a "} value={review}
+                                                              onChange={e => setReview(e.target.value)}>
+                                                </Form.Control>
+                                                <br/>
+                                                <button style={{
+                                                    borderRadius: 10,
+                                                    backgroundColor: "grey",
+                                                    color: 'black',
+                                                    marginRight: 15
+                                                }}>Cancel
+                                                </button>
+                                                <button style={{
+                                                    borderRadius: 10,
+                                                    backgroundColor: "orange",
+                                                    color: 'black'
+                                                }} onClick={()=>{
+                                                    toPdf()
+                                                }}>
+                                                    Download
+                                                </button>
+                                            </div>
+                                        )}
+                                    </Pdf>
+                                );
+                            }
+                        });
+                    }}>
+                        <FaTrash size={20} color={"#34495e"}/>
+                        <span style={{color: '#34495e', margin: 8}}>Reset Design</span>
+                    </Button>
+
 
                 </Col>
                 <Col>
-                    <Pdf targetRef={ref} filename="div-blue.pdf" scale={2} x={50} y={15}>
-                        {({toPdf}) => (
-                            <Button variant="outline-light" style={{borderColor: "#34495e"}}>
-                                <FaTrash size={20} color={"#34495e"}/>
-                                <span style={{color: '#34495e', margin: 8}} onClick={toPdf}>Reset Design</span>
-                            </Button>
-                        )}
-                    </Pdf>
+
+                    <Button variant="outline-light" style={{borderColor: "#34495e"}}>
+                        <FaFileDownload size={20} color={"#34495e"}/>
+                        <span style={{color: '#34495e', margin: 8}}>Reset</span>
+                    </Button>
+
 
                 </Col>
             </Row>
