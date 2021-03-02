@@ -78,15 +78,17 @@ function Canvas({fetchElements, element}) {
                                                 <br/>
                                                 <button style={{
                                                     borderRadius: 10,
+                                                    padding:5,
                                                     backgroundColor: "grey",
-                                                    color: 'black',
+                                                    color: 'white',
                                                     marginRight: 15
                                                 }}>Cancel
                                                 </button>
                                                 <button style={{
                                                     borderRadius: 10,
+                                                    padding:5,
                                                     backgroundColor: "orange",
-                                                    color: 'black'
+                                                    color: 'white'
                                                 }} onClick={()=>{
                                                     toPdf()
                                                 }}>
