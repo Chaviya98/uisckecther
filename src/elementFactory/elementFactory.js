@@ -21,15 +21,18 @@ export function ElementFactory({element}) {
     const [elementArray,setElementArray] = useState( []);
     const [maxLimit,setMaxLimit] = useState( false);
 
-
-
-    function positionCalculator(elementName){
+    function positionCalculator({elementName,elementSize}){
 
         if(!elementName){
             return 35
         }
         else {
-           return elementPositionMap.filter(element => element.component == elementName)[0].height
+            if(elementSize === 1) {
+                return elementPositionMap.filter(element => element.component == elementName)[0].heightSmall
+            } else {
+                return elementPositionMap.filter(element => element.component == elementName)[0].heightLarge
+            }
+
         }
     }
 
@@ -39,9 +42,9 @@ export function ElementFactory({element}) {
         setElementCount( prevState => prevState +1);
         setPosition(preState => ({
             ...preState,
-            y: preState.y + positionCalculator(element.element)
+            y: preState.y + positionCalculator({elementName:element.element,elementSize:element.size})
         }))
-        if(position.y +  positionCalculator(element.element) < 380 && element.element!=""){
+        if(position.y +  positionCalculator({elementName:element.element,elementSize:element.size}) < 380 && element.element !== ""){
             elementArray.push(<ElementGenerator element={element} position={position} elementCount={elementCount}/>)
         }
         else {
@@ -70,7 +73,7 @@ export function ElementGenerator({element,position,elementCount}){
         case "navbar":
             return    <BottomNavBar element={element} position={position} count={elementCount}/>;
         case "button":
-            return  <UIButton position={position} radius={50} fill={element.color} draggable={true} title={element.attribute} />;
+            return  <UIButton element={element} position={position} radius={50} fill={element.color} draggable={true} title={element.attribute} />;
             // code block
             break;
         case "card":

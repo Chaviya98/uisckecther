@@ -7,17 +7,19 @@
   {
     "component": "button",
     "width": 140,
-    "height": 40
+    "heightSmall": 35,
+    "heightLarge": 40
   },
   {
     "component": "card",
     "width": 140,
-    "height": 160
+    "heightSmall": 140,
+    "heightLarge": 160
   },
   {
     "component": "image",
     "width": 140,
-    "height": 100
+    "height": 110
   },
   {
     "component": "input",

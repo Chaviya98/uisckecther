@@ -3,17 +3,23 @@ import React from "react";
 
 export function UIButton({element,position,count,title}) {
     const color = 'white';
-    const size = { width : 100 , height:50}
-
+    let size = 0;
     if (title == null){
         title = "Title"
     }
+
+    if (element && element.element && element.size === 1 ){
+        size = 25
+    } else {
+        size = 30
+    }
+
     return   <Layer>
         <Rect
             x={position.x}
             y={position.y+10}
             width={140}
-            height={30}
+            height={size}
             fill="white"
             shadowBlur={2}
         />

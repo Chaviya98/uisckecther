@@ -3,17 +3,25 @@ import React from "react";
 
 export function UICard({element,position,count, title}) {
     const color = 'white';
-    const size = { width : 100 , height:50};
-
+    let sizeCardBackground = 0;
+    let sizeCardInformation = 0;
     if (title == null){
         title = "Title"
     }
+    if (element && element.element && element.size === 1 ){
+        sizeCardBackground = 100;
+        sizeCardInformation = 30;
+    } else {
+        sizeCardBackground = 120;
+        sizeCardInformation = 40;
+    }
+
     return   <Layer>
         <Rect
             x={position.x}
             y={position.y+10}
             width={140}
-            height={120}
+            height={sizeCardBackground}
             fill="white"
             shadowBlur={2}
         />
@@ -21,12 +29,12 @@ export function UICard({element,position,count, title}) {
             x={position.x}
             y={position.y+110}
             width={140}
-            height={40}
+            height={sizeCardInformation}
             fill="white"
             shadowBlur={1}
         />
-        <Text text={title} fontSize={12}  x={position.x+10} y={position.y+115} />
-        <Text text={`Description`} fontSize={12}  x={position.x+10} y={position.y+130} />
+        <Text text={title} fontSize={sizeCardBackground === 100 ? 9 : 12}  x={position.x+10} y={position.y+115} />
+        <Text text={`Description`} fontSize={sizeCardBackground === 100 ? 9 : 12}  x={position.x+10} y={position.y+130} />
     </Layer>
 
 
