@@ -40,7 +40,11 @@ function Canvas({fetchElements, element}) {
 
     const ref = React.createRef();
     return (
+
         <div className={"canvas"}>
+            <Row>
+
+            <Col>
             <div ref={ref}>
                 <Image src={phone} fluid style={{position: "absolute"}} width={200} height={400}/>
                 <Stage width={200} height={400} style={{padding: 20}}>
@@ -52,11 +56,12 @@ function Canvas({fetchElements, element}) {
 
                 </Stage>
             </div>
+            </Col>
             <br/>
-            <Row className={"text-center"}>
-                <Col>
-
-                    <Button variant="outline-light" style={{borderColor: "#34495e"}} onClick={() => {
+            <Col className={"text-center"}>
+                <Row className={"justify-content-center"}>
+                    <span style={{textAlign:"center",marginBottom:30}} >Please use the below button to download the generated sketch UI design as a PDF.</span>
+                    <Button variant="outline-light" style={{borderColor: "#34495e",width:130,marginBottom:40}} onClick={() => {
                         confirmAlert({
                             customUI: () => {
                                 return (
@@ -101,23 +106,25 @@ function Canvas({fetchElements, element}) {
                             }
                         });
                     }}>
-                        <FaTrash size={20} color={"#34495e"}/>
-                        <span style={{color: '#34495e', margin: 8}}>Reset Design</span>
+                        <FaFileDownload size={15} color={"#34495e"}/>
+                        <span style={{color: '#34495e', margin: 5}}>Download</span>
                     </Button>
 
 
-                </Col>
-                <Col>
-
-                    <Button variant="outline-light" style={{borderColor: "#34495e"}}>
-                        <FaFileDownload size={20} color={"#34495e"}/>
-                        <span style={{color: '#34495e', margin: 8}}>Reset</span>
+                </Row>
+                <Row className={"justify-content-center"}>
+                    <span style={{textAlign:"center",marginBottom:30}} >Please use the below button to clear the canvas.</span>
+                    <Button variant="outline-light" style={{borderColor: "#34495e",width:130}}>
+                        <FaTrash size={15} color={"#34495e"}/>
+                        <span style={{color: '#34495e', margin: 5}}>Reset</span>
                     </Button>
 
 
-                </Col>
+                </Row>
+            </Col>
             </Row>
         </div>
+
     )
 
 }

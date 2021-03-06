@@ -28,7 +28,7 @@ function InputForm({dispatch, fetchElements, isLoading}) {
                     <Card className={"text-center"} style={{borderRadius: 60}}>
                         <Card.Body>
                             <Form>
-                                <InputGroup className="mb-3" style={{borderRadius: 60}}>
+                                <InputGroup className="mb-3" style={{borderRadius: 60,justifyContent:"center"}}>
                                     <Form.Control as="textarea" rows={3} style={{borderRadius: 20, margin: 10, flex: 1}}
                                                   placeholder={"I want a "} value={input}
                                                   onChange={e => setInput(e.target.value)}>
