@@ -19,7 +19,8 @@
   {
     "component": "image",
     "width": 140,
-    "height": 110
+    "heightSmall": 90,
+    "heightLarge": 110
   },
   {
     "component": "input",
@@ -29,7 +30,8 @@
   {
     "component": "text",
     "width": 140,
-    "height": 60
+    "heightSmall": 40,
+    "heightLarge": 60
   },
   {
     "component": "label",

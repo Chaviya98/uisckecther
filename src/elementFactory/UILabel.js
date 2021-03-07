@@ -1,9 +1,7 @@
 import {Text, Layer, Rect} from "react-konva";
 import React from "react";
 
-export function UILabel({element,position,count,value}) {
-    const color = 'white';
-    const size = { width : 100 , height:50}
+export function UILabel({element,position,value}) {
 
     if (value == null){
         value = "Label name"

@@ -1,8 +1,8 @@
 import {Text,Circle,Layer, Rect} from "react-konva";
 import React from "react";
 
-export function UIButton({element,position,count,title}) {
-    const color = 'white';
+export function UIButton({element,position,title}) {
+
     let size = 0;
     if (title == null){
         title = "Title"

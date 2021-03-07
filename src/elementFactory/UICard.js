@@ -1,8 +1,8 @@
 import {Text, Circle, Layer, Rect} from "react-konva";
 import React from "react";
 
-export function UICard({element,position,count, title}) {
-    const color = 'white';
+export function UICard({element,position, title}) {
+
     let sizeCardBackground = 0;
     let sizeCardInformation = 0;
     if (title == null){

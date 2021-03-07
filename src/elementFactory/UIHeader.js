@@ -1,9 +1,7 @@
 import {Text,Circle,Layer, Rect} from "react-konva";
 import React from "react";
 
-export function UIHeader({element,position,count}) {
-    const color = 'white';
-    const size = { width : 100 , height:50}
+export function UIHeader({element,position}) {
 
     return   <Layer>
         <Rect

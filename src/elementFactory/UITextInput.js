@@ -1,9 +1,7 @@
 import {Text, Circle, Layer, Rect} from "react-konva";
 import React from "react";
 
-export function UITextInput({element,position,count, placeholder}) {
-    const color = 'white';
-    const size = { width : 100 , height:50}
+export function UITextInput({element,position, placeholder}) {
 
     if (placeholder == null){
         placeholder = "Placeholder"
