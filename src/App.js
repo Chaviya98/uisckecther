@@ -5,6 +5,8 @@ import Header from './components/header/header'
 import {Provider} from 'react-redux'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {store} from "./store";
+import UserGuide from "./components/guide/UserGuide";
+import About from "./components/about/About";
 
 
 function App() {
@@ -14,8 +16,8 @@ function App() {
         <Provider store={store}>
             <Header setPage={setPage}/>
             { page === 1 && <Body/>}
-            { page === 2 && <Body/>}
-            { page === 3 && <></>}
+            { page === 2 && <UserGuide/>}
+            { page === 3 && <About/>}
         </Provider>
 
     );
