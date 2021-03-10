@@ -22,17 +22,19 @@ export const fetchElements = (input) => async (dispatch) => {
     dispatch(requestLogin(input));
     var uniqid = require('uniqid');
 
-    await  fetch( baseURL, {
+    await fetch(baseURL, {
         headers: {'Content-Type': 'application/json'},
-            method: 'POST',
-            body: input
+        method: 'POST',
+        body: input
 
-        })
+    })
         .then(response => response.json())
         .then(json => {
-            if(!!json && !!json.data && json.data.element !== "null"){
-                addData({collectionName : "documents",documentID : uniqid(),inputData:input,
-                    identifiedUIElement : json.data.element, attributeName : json.data.attribute});
+            if (!!json && !!json.data && json.data.element !== "null") {
+                addData({
+                    collectionName: "documents", documentID: uniqid(), inputData: input,
+                    identifiedUIElement: json.data.element, attributeName: json.data.attribute
+                });
             }
             dispatch(elementSuccess(json))
         })

@@ -28,7 +28,7 @@ function InputForm({dispatch, fetchElements, isLoading}) {
                     <Card className={"text-center"} style={{borderRadius: 60}}>
                         <Card.Body>
                             <Form>
-                                <InputGroup className="mb-3" style={{borderRadius: 60,justifyContent:"center"}}>
+                                <InputGroup className="mb-3" style={{borderRadius: 60, justifyContent: "center"}}>
                                     <Form.Control as="textarea" rows={3} style={{borderRadius: 20, margin: 10, flex: 1}}
                                                   placeholder={"I want a "} value={input}
                                                   onChange={e => setInput(e.target.value)}>
@@ -52,7 +52,7 @@ function InputForm({dispatch, fetchElements, isLoading}) {
 
                                     </InputGroup.Append>
                                 </InputGroup>
-                                <Button variant="success"  style={{borderRadius: 50}}
+                                <Button variant="success" style={{borderRadius: 50}}
                                         onClick={() => fetchElements(input)}>
                                     <SiMicrogenetics color={'white'} size={35} style={{marginLeft: 5, marginRight: 8}}/>
                                     Generate

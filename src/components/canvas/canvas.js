@@ -21,7 +21,7 @@ function Canvas({fetchElements, element}) {
     const [review, setReview] = useState();
 
     const ratingChanged = (newRating) => {
-      setRating(newRating);
+        setRating(newRating);
     };
 
     useEffect(() => {
@@ -44,84 +44,86 @@ function Canvas({fetchElements, element}) {
         <div className={"canvas"}>
             <Row>
 
-            <Col>
-            <div ref={ref}>
-                <Image src={phone} fluid style={{position: "absolute"}} width={200} height={400}/>
-                <Stage width={200} height={400} style={{padding: 20}}>
+                <Col>
+                    <div ref={ref}>
+                        <Image src={phone} fluid style={{position: "absolute"}} width={200} height={400}/>
+                        <Stage width={200} height={400} style={{padding: 20}}>
 
-                    {/*<Text text="Some text on canvas" fontSize={15} />*/}
-                    {element && element.element !== "null" &&
-                    <ElementFactory element={element}/>
-                    }
-
-                </Stage>
-            </div>
-            </Col>
-            <br/>
-            <Col className={"text-center"}>
-                <Row className={"justify-content-center"}>
-                    <span style={{textAlign:"center",marginBottom:30}} >Please use the below button to download the generated sketch UI design as a PDF.</span>
-                    <Button variant="outline-light" style={{borderColor: "#34495e",width:130,marginBottom:40}} onClick={() => {
-                        confirmAlert({
-                            customUI: () => {
-                                return (
-                                    <Pdf targetRef={ref} filename="div-blue.pdf" scale={2} x={50} y={15}>
-                                        {({toPdf}) => (
-                                            <div className='custom-ui'>
-                                                <h3>Please rate you sketch design.</h3>
-                                                <ReactStars
-                                                    count={5}
-                                                    onChange={ratingChanged}
-                                                    size={40}
-                                                    activeColor="#ffd700"
-                                                />
-                                                <br/>
-                                                <Form.Control as="textarea" rows={3} style={{borderRadius: 20, flex: 1}}
-                                                              placeholder={"I want a "} value={review}
-                                                              onChange={e => setReview(e.target.value)}>
-                                                </Form.Control>
-                                                <br/>
-                                                <button style={{
-                                                    borderRadius: 10,
-                                                    padding:5,
-                                                    backgroundColor: "grey",
-                                                    color: 'white',
-                                                    marginRight: 15
-                                                }}>Cancel
-                                                </button>
-                                                <button style={{
-                                                    borderRadius: 10,
-                                                    padding:5,
-                                                    backgroundColor: "orange",
-                                                    color: 'white'
-                                                }} onClick={()=>{
-                                                    toPdf()
-                                                }}>
-                                                    Download
-                                                </button>
-                                            </div>
-                                        )}
-                                    </Pdf>
-                                );
+                            {/*<Text text="Some text on canvas" fontSize={15} />*/}
+                            {element && element.element !== "null" &&
+                            <ElementFactory element={element}/>
                             }
-                        });
-                    }}>
-                        <FaFileDownload size={15} color={"#34495e"}/>
-                        <span style={{color: '#34495e', margin: 5}}>Download</span>
-                    </Button>
+
+                        </Stage>
+                    </div>
+                </Col>
+                <br/>
+                <Col className={"text-center"}>
+                    <Row className={"justify-content-center"}>
+                        <span style={{textAlign: "center", marginBottom: 30}}>Please use the below button to download the generated sketch UI design as a PDF.</span>
+                        <Button variant="outline-light" style={{borderColor: "#34495e", width: 130, marginBottom: 40}}
+                                onClick={() => {
+                                    confirmAlert({
+                                        customUI: () => {
+                                            return (
+                                                <Pdf targetRef={ref} filename="div-blue.pdf" scale={2} x={50} y={15}>
+                                                    {({toPdf}) => (
+                                                        <div className='custom-ui'>
+                                                            <h3>Please rate you sketch design.</h3>
+                                                            <ReactStars
+                                                                count={5}
+                                                                onChange={ratingChanged}
+                                                                size={40}
+                                                                activeColor="#ffd700"
+                                                            />
+                                                            <br/>
+                                                            <Form.Control as="textarea" rows={3}
+                                                                          style={{borderRadius: 20, flex: 1}}
+                                                                          placeholder={"I want a "} value={review}
+                                                                          onChange={e => setReview(e.target.value)}>
+                                                            </Form.Control>
+                                                            <br/>
+                                                            <button style={{
+                                                                borderRadius: 10,
+                                                                padding: 5,
+                                                                backgroundColor: "grey",
+                                                                color: 'white',
+                                                                marginRight: 15
+                                                            }}>Cancel
+                                                            </button>
+                                                            <button style={{
+                                                                borderRadius: 10,
+                                                                padding: 5,
+                                                                backgroundColor: "orange",
+                                                                color: 'white'
+                                                            }} onClick={() => {
+                                                                toPdf()
+                                                            }}>
+                                                                Download
+                                                            </button>
+                                                        </div>
+                                                    )}
+                                                </Pdf>
+                                            );
+                                        }
+                                    });
+                                }}>
+                            <FaFileDownload size={15} color={"#34495e"}/>
+                            <span style={{color: '#34495e', margin: 5}}>Download</span>
+                        </Button>
 
 
-                </Row>
-                <Row className={"justify-content-center"}>
-                    <span style={{textAlign:"center",marginBottom:30}} >Please use the below button to clear the canvas.</span>
-                    <Button variant="outline-light" style={{borderColor: "#34495e",width:130}}>
-                        <FaTrash size={15} color={"#34495e"}/>
-                        <span style={{color: '#34495e', margin: 5}}>Reset</span>
-                    </Button>
+                    </Row>
+                    <Row className={"justify-content-center"}>
+                        <span style={{textAlign: "center", marginBottom: 30}}>Please use the below button to clear the canvas.</span>
+                        <Button variant="outline-light" style={{borderColor: "#34495e", width: 130}}>
+                            <FaTrash size={15} color={"#34495e"}/>
+                            <span style={{color: '#34495e', margin: 5}}>Reset</span>
+                        </Button>
 
 
-                </Row>
-            </Col>
+                    </Row>
+                </Col>
             </Row>
         </div>
 

@@ -9,22 +9,21 @@ import {UIHeader} from "./UIHeader";
 import elementPositionMap from "../assets/data/data.json";
 import {UILabel} from "./UILabel";
 import {BottomNavBar} from "./BottomNavBar";
-import { confirmAlert } from 'react-confirm-alert';
+import {confirmAlert} from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
 export function ElementFactory({element}) {
 
-    const [position,setPosition] = useState({ x: 10,y:5});
-    const [elementCount,setElementCount] = useState(0);
-    const [elementArray,setElementArray] = useState( []);
+    const [position, setPosition] = useState({x: 10, y: 5});
+    const [elementCount, setElementCount] = useState(0);
+    const [elementArray, setElementArray] = useState([]);
 
-    function positionCalculator({elementName,elementSize}){
+    function positionCalculator({elementName, elementSize}) {
 
-        if(!elementName){
+        if (!elementName) {
             return 35
-        }
-        else {
-            if(elementSize === 1) {
+        } else {
+            if (elementSize === 1) {
                 return elementPositionMap.filter(element => element.component == elementName)[0].heightSmall
             } else {
                 return elementPositionMap.filter(element => element.component == elementName)[0].heightLarge
@@ -34,17 +33,19 @@ export function ElementFactory({element}) {
     }
 
 
-    useEffect(()=>{
+    useEffect(() => {
 
-        setElementCount( prevState => prevState +1);
+        setElementCount(prevState => prevState + 1);
         setPosition(preState => ({
             ...preState,
-            y: preState.y + positionCalculator({elementName:element.element,elementSize:element.size})
+            y: preState.y + positionCalculator({elementName: element.element, elementSize: element.size})
         }))
-        if(position.y +  positionCalculator({elementName:element.element,elementSize:element.size}) < 380 && element.element !== ""){
+        if (position.y + positionCalculator({
+            elementName: element.element,
+            elementSize: element.size
+        }) < 380 && element.element !== "") {
             elementArray.push(<ElementGenerator element={element} position={position} elementCount={elementCount}/>)
-        }
-        else {
+        } else {
             confirmAlert({
                 title: 'Failed !',
                 message: 'Max Canvas height reached.',
@@ -55,43 +56,43 @@ export function ElementFactory({element}) {
                 ]
             });
         }
-    },[element])
+    }, [element])
 
     console.log(elementCount)
 
     return elementArray.map(
-        (item,index) => <>{item}</>
+        (item, index) => <>{item}</>
     )
 
 }
 
-export function ElementGenerator({element,position,elementCount}){
-    switch(element.element) {
+export function ElementGenerator({element, position, elementCount}) {
+    switch (element.element) {
         case "navbar":
-            return    <BottomNavBar element={element} position={position}/>;
+            return <BottomNavBar element={element} position={position}/>;
         case "button":
-            return  <UIButton element={element} position={position} title={element.attribute} />;
+            return <UIButton element={element} position={position} title={element.attribute}/>;
             // code block
             break;
         case "card":
-            return  <UICard element={element} position={position} title={element.attribute}/>;
+            return <UICard element={element} position={position} title={element.attribute}/>;
             break;
         case "image":
-            return  <UIImageView element={element} position={position}/>;
+            return <UIImageView element={element} position={position}/>;
             break;
         case "input":
-            return  <UITextInput element={element} position={position} placeholder={element.attribute}/>;
+            return <UITextInput element={element} position={position} placeholder={element.attribute}/>;
             break;
         case "text":
-            return  <UITextView element={element} position={position}/>;
+            return <UITextView element={element} position={position}/>;
             break;
         case "label":
-            return  <UILabel element={element} position={position} value={element.attribute}/>;
+            return <UILabel element={element} position={position} value={element.attribute}/>;
             break;
         case "header":
-            return  <UIHeader element={element} position={position} />;
+            return <UIHeader element={element} position={position}/>;
             break;
         default:
-            return <Circle x={100} y={100} radius={50} fill="grey" draggable={true} />
+            return <Circle x={100} y={100} radius={50} fill="grey" draggable={true}/>
     }
 }
