@@ -15,13 +15,29 @@ const firebaseConfig = {
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+firebase.firestore().settings({ experimentalForceLongPolling: true });
 
-export function addData({collectionName,documentID,inputData,identifiedUIElement,attributeName}){
+export function addData({collectionName,documentID,inputData,identifiedUIElement,attributeName,sizeName}){
     var db = firebase.firestore();
     db.collection(collectionName).doc(documentID).set({
         inputData: inputData,
         identifiedUIElement: identifiedUIElement,
-        attributeName: attributeName
+        attributeName: attributeName,
+        sizeName:sizeName
+    })
+        .then((docRef) => {
+
+        })
+        .catch((error) => {
+            console.error("Error adding document: ", error);
+        });
+}
+
+export function saveReviews({collectionName,documentID,review,comment}){
+    var db = firebase.firestore();
+    db.collection(collectionName).doc(documentID).set({
+        review: review,
+        comment: comment
     })
         .then((docRef) => {
 

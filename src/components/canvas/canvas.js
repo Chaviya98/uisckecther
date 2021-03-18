@@ -11,33 +11,14 @@ import {confirmAlert} from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import ReactStars from "react-rating-stars-component";
 
-
-
 function Canvas({fetchElements, element}) {
-    // useEffect(()=>{
-    //     fetchElements("TEst")
-    // },[])
-    // console.log(">>>",element)
+
     const [rating, setRating] = useState(2);
     const [review, setReview] = useState();
 
     const ratingChanged = (newRating) => {
         setRating(newRating);
     };
-
-    useEffect(() => {
-        if (element && element.element && element.element === "null") {
-            confirmAlert({
-                title: 'Failed !',
-                message: element.error,
-                buttons: [
-                    {
-                        label: 'Ok',
-                    }
-                ]
-            });
-        }
-    }, [element]);
 
     const ref = React.createRef();
     return (
@@ -50,8 +31,7 @@ function Canvas({fetchElements, element}) {
                         <Image src={phone} fluid style={{position: "absolute"}} width={200} height={400}/>
                         <Stage width={200} height={400} style={{padding: 20}}>
 
-                            {/*<Text text="Some text on canvas" fontSize={15} />*/}
-                            {element && element.element !== "null" &&
+                            {element  &&
                             <ElementFactory element={element}/>
                             }
 
@@ -65,7 +45,7 @@ function Canvas({fetchElements, element}) {
                         <Button variant="outline-light" style={{borderColor: "#34495e", width: 130, marginBottom: 40}}
                                 onClick={() => {
                                     confirmAlert({
-                                        customUI: () => {
+                                        customUI: ({onClose}) => {
                                             return (
                                                 <Pdf targetRef={ref} filename="div-blue.pdf" scale={2} x={50} y={15}>
                                                     {({toPdf}) => (
@@ -90,7 +70,7 @@ function Canvas({fetchElements, element}) {
                                                                 backgroundColor: "grey",
                                                                 color: 'white',
                                                                 marginRight: 15
-                                                            }}>Cancel
+                                                            }} onClick={onClose}>Cancel
                                                             </button>
                                                             <button style={{
                                                                 borderRadius: 10,
@@ -143,7 +123,7 @@ const mapDispatchToProps = dispatch => {
         // explicitly forwarding arguments
         fetchElements: user => dispatch(fetchElements(user)),
     }
-}
+};
 
 const mapStateToProps = state => {
     const {loginReducer} = state;

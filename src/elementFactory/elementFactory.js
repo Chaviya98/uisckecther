@@ -32,33 +32,44 @@ export function ElementFactory({element}) {
         }
     }
 
-
     useEffect(() => {
-
-        setElementCount(prevState => prevState + 1);
-        setPosition(preState => ({
-            ...preState,
-            y: preState.y + positionCalculator({elementName: element.element, elementSize: element.size})
-        }))
-        if (position.y + positionCalculator({
-            elementName: element.element,
-            elementSize: element.size
-        }) < 380 && element.element !== "") {
-            elementArray.push(<ElementGenerator element={element} position={position} elementCount={elementCount}/>)
-        } else {
+        if (element && element.element && element.element === "null") {
             confirmAlert({
                 title: 'Failed !',
-                message: 'Max Canvas height reached.',
+                message: element.error,
                 buttons: [
                     {
                         label: 'Ok',
                     }
                 ]
             });
+        } else{
+            setElementCount(prevState => prevState + 1);
+            setPosition(preState => ({
+                ...preState,
+                y: preState.y + positionCalculator({elementName: element.element, elementSize: element.size})
+            }));
+            if (position.y + positionCalculator({
+                elementName: element.element,
+                elementSize: element.size
+            }) < 380 && element.element !== "") {
+                elementArray.push(<ElementGenerator element={element} position={position} elementCount={elementCount}/>)
+            } else {
+                confirmAlert({
+                    title: 'Failed !',
+                    message: 'Max Canvas height reached.',
+                    buttons: [
+                        {
+                            label: 'Ok',
+                        }
+                    ]
+                });
+            }
         }
-    }, [element])
 
-    console.log(elementCount)
+    }, [element]);
+
+    console.log(elementCount);
 
     return elementArray.map(
         (item, index) => <>{item}</>
