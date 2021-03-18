@@ -12,6 +12,7 @@ import 'react-confirm-alert/src/react-confirm-alert.css';
 import ReactStars from "react-rating-stars-component";
 
 
+
 function Canvas({fetchElements, element}) {
     // useEffect(()=>{
     //     fetchElements("TEst")
@@ -116,7 +117,8 @@ function Canvas({fetchElements, element}) {
                     </Row>
                     <Row className={"justify-content-center"}>
                         <span style={{textAlign: "center", marginBottom: 30}}>Please use the below button to clear the canvas.</span>
-                        <Button variant="outline-light" style={{borderColor: "#34495e", width: 130}}>
+                        <Button variant="outline-light" style={{borderColor: "#34495e", width: 130}}
+                        onClick={() => refreshPage()}>
                             <FaTrash size={15} color={"#34495e"}/>
                             <span style={{color: '#34495e', margin: 5}}>Reset</span>
                         </Button>
@@ -130,6 +132,11 @@ function Canvas({fetchElements, element}) {
     )
 
 }
+
+function refreshPage() {
+    window.location.reload(false);
+}
+
 
 const mapDispatchToProps = dispatch => {
     return {

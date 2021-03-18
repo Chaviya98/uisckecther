@@ -42,8 +42,14 @@ function About() {
                         <h2 style={{color: "orange", textAlign: "center"}}>Contact Us</h2>
                         <br/>
 
-                        <div style={{padding: 10}}>
-
+                        <div style={{padding: 10,textAlign: "center"}}>
+                            <span style={{fontSize: 20}}>Location : Maradana, Colombo 10</span>
+                            <br/>
+                            <br/>
+                            <span style={{fontSize: 20}}>Tel : 0770519613</span>
+                            <br/>
+                            <br/>
+                            <span style={{fontSize: 20}}>Email : chavividusha@gmail.com</span>
                         </div>
 
                     </div>
