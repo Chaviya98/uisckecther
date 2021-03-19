@@ -33,11 +33,12 @@ export function addData({collectionName,documentID,inputData,identifiedUIElement
         });
 }
 
-export function saveReviews({collectionName,documentID,review,comment}){
+export function saveReviews({collectionName,documentID,ratingValue, userComment}){
+
     var db = firebase.firestore();
     db.collection(collectionName).doc(documentID).set({
-        review: review,
-        comment: comment
+        ratingValue: ratingValue,
+        userComment: userComment
     })
         .then((docRef) => {
 

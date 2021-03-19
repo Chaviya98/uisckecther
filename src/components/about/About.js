@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container, Row, Image, Col} from "react-bootstrap";
+import {Container, Row, Col} from "react-bootstrap";
 import userGuide from "../../assets/images/userguide.png";
 
 function About() {

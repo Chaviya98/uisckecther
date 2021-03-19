@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Button, Card, Form, InputGroup} from "react-bootstrap";
 import {FaMicrophone, FaStop, FaResolving} from 'react-icons/fa';
-import {SiMicrogenetics, SiHighly, SiFlickr} from 'react-icons/si';
+import {SiMicrogenetics} from 'react-icons/si';
 import SpeechRecognition, {useSpeechRecognition} from 'react-speech-recognition'
 import {fetchElements} from "../../actions";
 import {connect} from "react-redux";

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container, Row,Image, Col} from "react-bootstrap";
+import {Container, Row, Col} from "react-bootstrap";
 import InputForm from "../inputForm/inputForm";
 import Canvas from "../canvas/canvas";
 import phone from "../../assets/images/hpne.png";
