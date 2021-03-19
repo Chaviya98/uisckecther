@@ -18,6 +18,13 @@ export const elementFailure = error => ({
 });
 
 
+function extractSizeName(elementSize) {
+    if(elementSize === 1){
+        return "Small"
+    } else{
+        return "Large"
+    }
+}
 export const fetchElements = (input) => async (dispatch) => {
     dispatch(requestLogin(input));
     var uniqid = require('uniqid');
@@ -33,15 +40,13 @@ export const fetchElements = (input) => async (dispatch) => {
             // if (!!json && !!json.data && json.data.element !== "null") {
             //     addData({
             //         collectionName: "UISketcherUserData", documentID: uniqid(), inputData: input,
-            //         identifiedUIElement: json.data.element, attributeName: json.data.attribute , sizeName: json.data.size
+            //         identifiedUIElement: json.data.element, attributeName: json.data.attribute , sizeName: extractSizeName(json.data.size)
             //     });
             // }
             dispatch(elementSuccess(json))
         })
         .catch(error => dispatch(elementFailure(error)))
-
-
-}
+};
 
 
 
