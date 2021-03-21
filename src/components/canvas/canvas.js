@@ -65,12 +65,15 @@ function Canvas({fetchElements, element}) {
                                 <Button variant="outline-light"
                                         style={{borderColor: "#EC7A23", width: 130, marginBottom: 40}}
                                         onClick={() => {
-                                            saveReviews({
-                                                collectionName: "UISketcherUserReviews",
-                                                documentID: uniqid(),
-                                                ratingValue: rating,
-                                                userComment: comment
-                                            });
+                                            if(rating !== 0){
+                                                saveReviews({
+                                                    collectionName: "UISketcherUserReviews",
+                                                    documentID: uniqid(),
+                                                    ratingValue: !!rating ? rating : 0,
+                                                    userComment: !!comment ? comment : ""
+                                                });
+                                            }
+
                                             toPdf();
                                             setRating(0);
                                             setComment("");
