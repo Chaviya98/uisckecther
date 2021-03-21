@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Stage} from 'react-konva';
 import {Button, Col, Image, Row} from "react-bootstrap";
-import {FaFileDownload, FaTrash, FaComment} from 'react-icons/fa';
+import {FaFileDownload, FaTrash, FaComment, FaStickyNote} from 'react-icons/fa';
 import phone from "../../assets/images/hpne.png";
 import {ElementFactory} from "../../elementFactory/elementFactory";
 import {connect} from "react-redux";
@@ -16,7 +16,11 @@ import ReactSnackBar from "react-js-snackbar";
 function Canvas({fetchElements, element}) {
 
     const [rating, setRating] = useState(0);
-    const [comment, setComment] = useState();
+    const [comment, setComment] = useState("");
+    const [note, setNote] = useState("");
+    const [toastMsg, setToastMsg] = useState("");
+    const [toastForReview, setToastForReview] = useState(false);
+    const [toastForNote, setToastForNote] = useState(false);
     const [showToast, setShowToast] = useState(false);
     const [toastShowing, setToastShowing] = useState(false);
 
@@ -26,14 +30,41 @@ function Canvas({fetchElements, element}) {
         setRating(newRating);
     };
 
+    const downloadTxtFile = () => {
+        const element = document.createElement("a");
+        const file = new Blob([note], {type: 'text/plain'});
+        element.href = URL.createObjectURL(file);
+        element.download = "myFile.txt";
+        document.body.appendChild(element); // Required for this to work in FireFox
+        element.click();
+    };
+
+    useEffect(() => {
+        if (toastForReview) {
+            if (rating !== 0) {
+                setToastMsg("User review saved. Thank you !")
+            } else {
+                setToastMsg("Failed attempt ! Please add a rating")
+            }
+        }
+        if (toastForNote) {
+            if (!!note) {
+                setToastMsg("User note saved. Thank you !")
+            } else {
+                setToastMsg("Failed attempt ! Please add a note")
+            }
+        }
+    }, [note, rating, toastForReview, toastForNote]);
+
     const toast = () => {
+
         if (toastShowing) return;
-            setShowToast(true);
-            setToastShowing(true);
-            setTimeout(() => {
-                setShowToast(false);
-                setToastShowing(false)
-            }, 2000);
+        setShowToast(true);
+        setToastShowing(true);
+        setTimeout(() => {
+            setShowToast(false);
+            setToastShowing(false)
+        }, 2000);
     };
 
 
@@ -59,13 +90,13 @@ function Canvas({fetchElements, element}) {
                 <Col className={"text-center"}>
                     <Row className={"justify-content-center"}>
 
-                        <span style={{textAlign: "center", marginBottom: 30}}>Please use the button below  to download the generated sketch UI design as a PDF.</span>
+                        <span style={{textAlign: "center", marginBottom: 20}}>Please use the button below  to download the generated sketch UI design as a PDF.</span>
                         <Pdf targetRef={ref} filename="div-blue.pdf" scale={2} x={50} y={20}>
                             {({toPdf}) => (
                                 <Button variant="outline-light"
-                                        style={{borderColor: "#EC7A23", width: 130, marginBottom: 40}}
+                                        style={{borderColor: "#EC7A23", width: 130, marginBottom: 20}}
                                         onClick={() => {
-                                            if(rating !== 0){
+                                            if (rating !== 0) {
                                                 saveReviews({
                                                     collectionName: "UISketcherUserReviews",
                                                     documentID: uniqid(),
@@ -75,6 +106,9 @@ function Canvas({fetchElements, element}) {
                                             }
 
                                             toPdf();
+                                            if (!!note) {
+                                                downloadTxtFile();
+                                            }
                                             setRating(0);
                                             setComment("");
                                         }}>
@@ -86,8 +120,8 @@ function Canvas({fetchElements, element}) {
 
                     </Row>
                     <Row className={"justify-content-center"}>
-                        <span style={{textAlign: "center", marginBottom: 30}}>Please use the button below to add a review and a rating to the generated sketch UI design.</span>
-                        <Button variant="outline-light" style={{borderColor: "#EC7A23", width: 130, marginBottom: 40}}
+                        <span style={{textAlign: "center", marginBottom: 20}}>Please use the button below to add a review and a rating to the generated sketch UI design.</span>
+                        <Button variant="outline-light" style={{borderColor: "#EC7A23", width: 130, marginBottom: 20}}
                                 onClick={() => {
                                     confirmAlert({
                                         customUI: ({onClose}) => {
@@ -103,8 +137,14 @@ function Canvas({fetchElements, element}) {
                                                     <br/>
                                                     <textarea
                                                         rows={4}
-                                                        style={{borderRadius: 20, flex: 1, width: "100%",paddingTop:10,paddingLeft:10}}
-                                                        value={comment}
+                                                        style={{
+                                                            borderRadius: 20,
+                                                            flex: 1,
+                                                            width: "100%",
+                                                            paddingTop: 10,
+                                                            paddingLeft: 10
+                                                        }}
+                                                        placeholder={"add a comment"}
                                                         onChange={event => setComment(event.target.value)}
                                                     />
                                                     <br/>
@@ -112,29 +152,36 @@ function Canvas({fetchElements, element}) {
                                                     <button style={{
                                                         borderRadius: 10,
                                                         padding: 5,
-                                                        paddingLeft:10,
-                                                        paddingRight :10,
+                                                        paddingLeft: 10,
+                                                        paddingRight: 10,
                                                         backgroundColor: "#282F33",
                                                         color: 'white',
                                                         marginRight: 15
-                                                    }} onClick={onClose}>Cancel
+                                                    }} onClick={() => {
+                                                        setComment("");
+                                                        onClose()
+                                                    }}>Cancel
                                                     </button>
                                                     <button style={{
                                                         borderRadius: 10,
                                                         padding: 5,
-                                                        paddingLeft:10,
-                                                        paddingRight :10,
+                                                        paddingLeft: 10,
+                                                        paddingRight: 10,
                                                         borderColor: "white",
                                                         backgroundColor: "#EC7A23",
                                                         color: 'white'
                                                     }} onClick={() => {
-                                                            onClose();
-                                                            toast();
+                                                        setToastForReview(true);
+                                                        setToastForNote(false);
+                                                        onClose();
+                                                        toast();
                                                     }}>
                                                         Submit
                                                     </button>
                                                 </div>
                                             );
+                                        }, onClickOutside: () => {
+                                            setComment("")
                                         }
                                     });
                                 }}>
@@ -145,7 +192,73 @@ function Canvas({fetchElements, element}) {
 
                     </Row>
                     <Row className={"justify-content-center"}>
-                        <span style={{textAlign: "center", marginBottom: 30}}>Please use the button below to clear the canvas.</span>
+                        <span style={{textAlign: "center", marginBottom: 20}}>Please use the button below to add a custom note to your generated sketch UI design.</span>
+                        <Button variant="outline-light" style={{borderColor: "#EC7A23", width: 130, marginBottom: 20}}
+                                onClick={() => {
+                                    confirmAlert({
+                                        customUI: ({onClose}) => {
+                                            return (
+                                                <div className='custom-ui'>
+                                                    <h3>Please add a custom note to your generated design.</h3>
+                                                    <br/>
+                                                    <textarea
+                                                        rows={4}
+                                                        style={{
+                                                            borderRadius: 20,
+                                                            flex: 1,
+                                                            width: "100%",
+                                                            paddingTop: 10,
+                                                            paddingLeft: 10
+                                                        }}
+                                                        placeholder={"add a note"}
+                                                        onChange={event => setNote(event.target.value)}
+                                                    />
+                                                    <br/>
+                                                    <br/>
+                                                    <button style={{
+                                                        borderRadius: 10,
+                                                        padding: 5,
+                                                        paddingLeft: 10,
+                                                        paddingRight: 10,
+                                                        backgroundColor: "#282F33",
+                                                        color: 'white',
+                                                        marginRight: 15
+                                                    }} onClick={() => {
+                                                        setNote("");
+                                                        onClose()
+                                                    }}>Cancel
+                                                    </button>
+                                                    <button style={{
+                                                        borderRadius: 10,
+                                                        padding: 5,
+                                                        paddingLeft: 10,
+                                                        paddingRight: 10,
+                                                        borderColor: "white",
+                                                        backgroundColor: "#EC7A23",
+                                                        color: 'white'
+                                                    }} onClick={() => {
+                                                        setToastForReview(false);
+                                                        setToastForNote(true);
+                                                        onClose();
+                                                        toast();
+                                                    }}>
+                                                        Submit
+                                                    </button>
+                                                </div>
+                                            );
+                                        }, onClickOutside: () => {
+                                            setNote("")
+                                        }
+                                    });
+                                }}>
+                            <FaStickyNote size={15} color={"#EC7A23"}/>
+                            <span style={{color: '#34495e', margin: 5}}>Note</span>
+                        </Button>
+
+
+                    </Row>
+                    <Row className={"justify-content-center"}>
+                        <span style={{textAlign: "center", marginBottom: 20}}>Please use the button below to clear the canvas.</span>
                         <Button variant="outline-light" style={{borderColor: "#EC7A23", width: 130}}
                                 onClick={() => refreshPage()}>
                             <FaTrash size={15} color={"#EC7A23"}/>
@@ -157,7 +270,7 @@ function Canvas({fetchElements, element}) {
                 </Col>
             </Row>
             <ReactSnackBar Show={showToast} Icon={<FaComment size={20} color={"#EC7A23"}/>}>
-                {rating !== 0 ? "User review saved. Thank you !" : "Failed attempt ! Please add a rating"}
+                {toastMsg}
             </ReactSnackBar>
         </div>
 
