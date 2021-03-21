@@ -26,7 +26,7 @@ function About() {
                                 </li>
                                 <br/>
                                 <li><span
-                                    style={{fontSize: 20}}>System only supports one default size screen yet.</span></li>
+                                    style={{fontSize: 20}}>System only supports one default screen size.</span></li>
                                 <br/>
                             </ul>
 

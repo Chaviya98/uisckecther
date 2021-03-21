@@ -59,7 +59,7 @@ function Canvas({fetchElements, element}) {
                 <Col className={"text-center"}>
                     <Row className={"justify-content-center"}>
 
-                        <span style={{textAlign: "center", marginBottom: 30}}>Please use the below button to download the generated sketch UI design as a PDF.</span>
+                        <span style={{textAlign: "center", marginBottom: 30}}>Please use the button below  to download the generated sketch UI design as a PDF.</span>
                         <Pdf targetRef={ref} filename="div-blue.pdf" scale={2} x={50} y={20}>
                             {({toPdf}) => (
                                 <Button variant="outline-light"
@@ -86,7 +86,7 @@ function Canvas({fetchElements, element}) {
 
                     </Row>
                     <Row className={"justify-content-center"}>
-                        <span style={{textAlign: "center", marginBottom: 30}}>Please use the below button to add a review and a rating to the generated sketch UI design.</span>
+                        <span style={{textAlign: "center", marginBottom: 30}}>Please use the button below to add a review and a rating to the generated sketch UI design.</span>
                         <Button variant="outline-light" style={{borderColor: "#EC7A23", width: 130, marginBottom: 40}}
                                 onClick={() => {
                                     confirmAlert({
@@ -145,7 +145,7 @@ function Canvas({fetchElements, element}) {
 
                     </Row>
                     <Row className={"justify-content-center"}>
-                        <span style={{textAlign: "center", marginBottom: 30}}>Please use the below button to clear the canvas.</span>
+                        <span style={{textAlign: "center", marginBottom: 30}}>Please use the button below to clear the canvas.</span>
                         <Button variant="outline-light" style={{borderColor: "#EC7A23", width: 130}}
                                 onClick={() => refreshPage()}>
                             <FaTrash size={15} color={"#EC7A23"}/>
