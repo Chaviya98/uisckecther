@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Button, Card, Form, InputGroup,} from "react-bootstrap";
-import {FaMicrophone, FaResolving,FaPushed} from 'react-icons/fa';
+import {FaMicrophone, FaResolving, FaPushed} from 'react-icons/fa';
 import {SiMicrogenetics} from 'react-icons/si';
 import SpeechRecognition, {useSpeechRecognition} from 'react-speech-recognition'
 import {fetchElements} from "../../actions";
@@ -23,7 +23,7 @@ function InputForm({dispatch, fetchElements, isLoading}) {
     return (
         <>
             {isLoading ?
-                <div><span style={{color:"#34495e"}}>Loading ... Please wait.</span></div> :
+                <div><span style={{color: "#34495e"}}>Loading ... Please wait.</span></div> :
                 <>
                     <Card className={"text-center"} style={{borderRadius: 60}}>
                         <Card.Body>
@@ -41,7 +41,7 @@ function InputForm({dispatch, fetchElements, isLoading}) {
                                         </Button>
                                         <Button onClick={SpeechRecognition.stopListening} variant="light"
                                                 style={{borderRadius: 20, margin: 10}}><FaPushed color={'#BEBBB7'}
-                                                                                               size={35}/>
+                                                                                                 size={35}/>
                                             <div>Stop</div>
                                         </Button>
                                         <Button onClick={resetTranscript} variant="light"
@@ -52,7 +52,8 @@ function InputForm({dispatch, fetchElements, isLoading}) {
 
                                     </InputGroup.Append>
                                 </InputGroup>
-                                <Button variant="success" style={{borderRadius: 50,backgroundColor:"#EC7A23",borderColor:"#EC7A23"}}
+                                <Button variant="success"
+                                        style={{borderRadius: 50, backgroundColor: "#EC7A23", borderColor: "#EC7A23"}}
                                         onClick={() => fetchElements(input)}>
                                     <SiMicrogenetics color={'white'} size={35} style={{marginLeft: 5, marginRight: 8}}/>
                                     Generate
@@ -72,7 +73,7 @@ const mapDispatchToProps = dispatch => {
         // explicitly forwarding arguments
         fetchElements: user => dispatch(fetchElements(user)),
     }
-}
+};
 
 const mapStateToProps = state => {
     const {loginReducer} = state;

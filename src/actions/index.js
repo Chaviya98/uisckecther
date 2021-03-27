@@ -19,12 +19,13 @@ export const elementFailure = error => ({
 
 
 function extractSizeName(elementSize) {
-    if(elementSize === 1){
+    if (elementSize === 1) {
         return "Small"
-    } else{
+    } else {
         return "Large"
     }
 }
+
 export const fetchElements = (input) => async (dispatch) => {
     dispatch(requestLogin(input));
     var uniqid = require('uniqid');

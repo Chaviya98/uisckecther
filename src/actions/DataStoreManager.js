@@ -15,15 +15,15 @@ const firebaseConfig = {
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-firebase.firestore().settings({ experimentalForceLongPolling: true });
+firebase.firestore().settings({experimentalForceLongPolling: true});
 
-export function addData({collectionName,documentID,inputData,identifiedUIElement,attributeName,sizeName}){
+export function addData({collectionName, documentID, inputData, identifiedUIElement, attributeName, sizeName}) {
     var db = firebase.firestore();
     db.collection(collectionName).doc(documentID).set({
         inputData: inputData,
         identifiedUIElement: identifiedUIElement,
         attributeName: attributeName,
-        sizeName:sizeName
+        sizeName: sizeName
     })
         .then((docRef) => {
 
@@ -33,7 +33,7 @@ export function addData({collectionName,documentID,inputData,identifiedUIElement
         });
 }
 
-export function saveReviews({collectionName,documentID,ratingValue, userComment}){
+export function saveReviews({collectionName, documentID, ratingValue, userComment}) {
 
     var db = firebase.firestore();
     db.collection(collectionName).doc(documentID).set({
