@@ -1,4 +1,4 @@
-import {Circle, Rect} from "react-konva";
+import {Text} from "react-konva";
 import React, {useEffect, useState} from "react";
 import {UIButton} from "./UIButton";
 import {UICard} from "./UICard";
@@ -43,7 +43,7 @@ export function ElementFactory({element}) {
                     }
                 ]
             });
-        } else{
+        } else {
             setElementCount(prevState => prevState + 1);
             setPosition(preState => ({
                 ...preState,
@@ -81,6 +81,7 @@ export function ElementGenerator({element, position, elementCount}) {
     switch (element.element) {
         case "navbar":
             return <BottomNavBar element={element} position={position}/>;
+            break;
         case "button":
             return <UIButton element={element} position={position} title={element.attribute}/>;
             // code block
@@ -104,6 +105,6 @@ export function ElementGenerator({element, position, elementCount}) {
             return <UIHeader element={element} position={position}/>;
             break;
         default:
-            return <Circle x={100} y={100} radius={50} fill="grey" draggable={true}/>
+            return <Text text={"ERROR"} fontSize={12} x={100} y={100} width={140} height={30}/>
     }
 }
