@@ -45,8 +45,6 @@ export function BottomNavBar({element, position}) {
             shadowBlur={2}
         />
 
-
     </Layer>
-
 
 }

@@ -1,19 +1,24 @@
-import {Text, Layer, Rect} from "react-konva";
+import {Text, Layer} from "react-konva";
 import React from "react";
 
-export function UILabel({element,position,value}) {
+export function UILabel({element, position, value}) {
 
-    if (value == null){
+    let size = 0;
+    if (value == null) {
         value = "Label name"
     }
 
+    if (element && element.element && element.size === 1) {
+        size = 25
+    } else {
+        size = 35
+    }
     return <Layer><Text
         text={value}
-        fontSize={12}
+        fontSize={size === 25 ? 10 : 12}
         x={position.x}
-        y={position.y+10}
+        y={position.y + 10}
         width={140}
-        height={30}
-        fill={element.color}
+        height={size}
     /></Layer>
 }

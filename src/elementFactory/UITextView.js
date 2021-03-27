@@ -1,10 +1,9 @@
-import {Text, Layer, Rect} from "react-konva";
+import {Text, Layer} from "react-konva";
 import React from "react";
 
 export function UITextView({element, position}) {
-    const color = 'white';
-    const size = {width: 100, height: 50}
-    var height = 0;
+
+    let height = 0;
 
     if (element && element.element && element.size === 1) {
         height = 40

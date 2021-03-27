@@ -2,7 +2,8 @@
   {
     "component": "header",
     "width": 140,
-    "height": 40
+    "heightSmall": 40,
+    "heightLarge": 40
   },
   {
     "component": "button",
@@ -25,7 +26,8 @@
   {
     "component": "input",
     "width": 140,
-    "height": 70
+    "heightSmall": 65,
+    "heightLarge": 75
   },
   {
     "component": "text",
@@ -36,11 +38,13 @@
   {
     "component": "label",
     "width": 140,
-    "height": 30
+    "heightSmall": 25,
+    "heightLarge": 35
   },
   {
     "component": "navbar",
     "width": 140,
-    "height": 40
+    "heightSmall": 40,
+    "heightLarge": 40
   }
 ]

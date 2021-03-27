@@ -1,9 +1,9 @@
-import {Text,Circle,Layer, Rect} from "react-konva";
+import {Text, Layer, Rect} from "react-konva";
 import React from "react";
 
-export function UIHeader({element,position}) {
+export function UIHeader({element, position}) {
 
-    return   <Layer>
+    return <Layer>
         <Rect
             x={position.x}
             y={position.y}
@@ -14,18 +14,14 @@ export function UIHeader({element,position}) {
         />
 
         <Rect
-            x={position.x+10}
-            y={position.y+5}
+            x={position.x + 10}
+            y={position.y + 5}
             width={80}
             height={20}
             fill="white"
             shadowBlur={2}
         />
-        <Text text={`Logo`} fontSize={12}  x={position.x+20} y={position.y+10} />
+        <Text text={`Logo`} fontSize={12} x={position.x + 20} y={position.y + 10}/>
     </Layer>
-
-
-
-
 
 }
