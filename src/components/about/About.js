@@ -19,7 +19,7 @@ function About() {
                                 <li><span style={{fontSize: 20}}>System can only detect basic attributes such as title, placeholder etc.</span>
                                 </li>
                                 <br/>
-                                <li><span style={{fontSize: 20}}>System only support a limited number of UI elements such as Button, Label, Card, Image.</span>
+                                <li><span style={{fontSize: 20}}>System only support a limited number of UI elements such as Text View, Image View, Card View , Button , Edit Text , Text Area, Header.</span>
                                 </li>
                                 <br/>
                                 <li><span style={{fontSize: 20}}>Editable feature for generated sketch designs are not yet supported.</span>
@@ -43,7 +43,7 @@ function About() {
                         <br/>
 
                         <div style={{padding: 10, textAlign: "center"}}>
-                            <span style={{fontSize: 20}}>Location : Maradana, Colombo 10</span>
+                            <span style={{fontSize: 20}}>Location : Colombo 10</span>
                             <br/>
                             <br/>
                             <span style={{fontSize: 20}}>Tel : 0770519613</span>
@@ -56,7 +56,7 @@ function About() {
                 </Col>
             </Row>
             <Row className={"align-items-center row-12 justify-content-center"}>
-                <span style={{fontSize: 15, padding: 10, textAlign: "center", color: "gery"}}>© 2020 UI Sketcher. All rights reserved.</span>
+                <span style={{fontSize: 15, padding: 10, textAlign: "center", color: "gery"}}>© 2021 UI Sketcher. All rights reserved.</span>
 
             </Row>
         </Container>

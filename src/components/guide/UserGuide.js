@@ -39,7 +39,7 @@ function UserGuide() {
             </Row>
 
             <Row className={"align-items-center row-12 justify-content-center"}>
-                <span style={{fontSize: 15, padding: 10, textAlign: "center", color: "gery"}}>© 2020 UI Sketcher. All rights reserved.</span>
+                <span style={{fontSize: 15, padding: 10, textAlign: "center", color: "gery"}}>© 2021 UI Sketcher. All rights reserved.</span>
 
             </Row>
         </Container>
