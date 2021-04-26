@@ -8,7 +8,6 @@ import {UITextView} from "./UITextView";
 import {UIHeader} from "./UIHeader";
 import elementPositionMap from "../assets/data/data.json";
 import {UILabel} from "./UILabel";
-import {BottomNavBar} from "./BottomNavBar";
 import {confirmAlert} from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 
@@ -79,9 +78,6 @@ export function ElementFactory({element}) {
 
 export function ElementGenerator({element, position, elementCount}) {
     switch (element.element) {
-        case "navbar":
-            return <BottomNavBar element={element} position={position}/>;
-            break;
         case "button":
             return <UIButton element={element} position={position} title={element.attribute}/>;
             // code block

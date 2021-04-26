@@ -40,11 +40,5 @@
     "width": 140,
     "heightSmall": 25,
     "heightLarge": 35
-  },
-  {
-    "component": "navbar",
-    "width": 140,
-    "heightSmall": 40,
-    "heightLarge": 40
   }
 ]
