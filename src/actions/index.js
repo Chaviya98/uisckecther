@@ -38,12 +38,12 @@ export const fetchElements = (input) => async (dispatch) => {
     })
         .then(response => response.json())
         .then(json => {
-            // if (!!json && !!json.data && json.data.element !== "null") {
-            //     addData({
-            //         collectionName: "UISketcherUserData", documentID: uniqid(), inputData: input,
-            //         identifiedUIElement: json.data.element, attributeName: json.data.attribute , sizeName: extractSizeName(json.data.size)
-            //     });
-            // }
+            if (!!json && !!json.data && json.data.element !== "null") {
+                addData({
+                    collectionName: "UISketcherUserData", documentID: uniqid(), inputData: input,
+                    identifiedUIElement: json.data.element, attributeName: json.data.attribute ?? "" , sizeName: extractSizeName(json.data.size) ?? ""
+                });
+            }
             dispatch(elementSuccess(json))
         })
         .catch(error => dispatch(elementFailure(error)))
